@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Player Stats</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+    
+    th {
+      background-color: #f2f2f2;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <div id="container"></div>
+
+  <script>
+    const players = [
+      { name: 'user1', runs: 700 },
+      { name: 'user2', runs: 1000 },
+      { name: 'user3', runs: 400 },
+      { name: 'user4', runs: 300 },
+      { name: 'user5', runs: 900 }
+    ];
+
+    const sortByRuns = players.slice().sort((a, b) => b.runs - a.runs);
+
+    
+    function arrayToTable() {
+      let tableHTML = '<table>' ;
+      tableHTML += '<tr><th>Rank</th><th>Name</th><th>Runs</th></tr>';
+      
+      for (let i = 0; i < sortByRuns.length; i++) {
+        tableHTML += '<tr>';
+        tableHTML += '<td>' + (i+1) + '</td>';
+        tableHTML += '<td>' + sortByRuns[i].name + '</td>';
+        tableHTML += '<td>' + sortByRuns[i].runs + '</td>';
+        tableHTML += '</tr>';
+      }
+
+      tableHTML += '</table>';
+      return tableHTML;
+    }
+
+    const tableContainer = document.getElementById('container');
+    tableContainer.innerHTML = arrayToTable();
+  </script>
+</body>
+</html>
